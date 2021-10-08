@@ -14,10 +14,11 @@ public class AlunoPersistence {
         em = JPAUtil.getEntityManager();
     }
 
-    public void add(Aluno aluno) {
+    public Aluno add(Aluno aluno) {
         em.getTransaction().begin();
         em.persist(aluno);
         em.getTransaction().commit();
+        return aluno;
     }
 
     public Aluno get(Long id) {

@@ -3,13 +3,12 @@ package com.escola.service;
 import com.escola.entity.Aluno;
 import com.escola.persistence.AlunoPersistence;
 
-import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AlunoService {
 
-    private AlunoPersistence alunoPersistence;
+    private final AlunoPersistence alunoPersistence;
 
     public AlunoService(AlunoPersistence alunoPersistence) {
         this.alunoPersistence = alunoPersistence;
@@ -19,11 +18,12 @@ public class AlunoService {
         return "RA" + ThreadLocalRandom.current().nextInt(100, 999);
     }
 
-    public void salvar(Aluno aluno) {
+    public Aluno salvar(Aluno aluno) {
         if (aluno.getRa() == null || aluno.getRa().isEmpty()) {
             aluno.setRa(gerarRa());
             alunoPersistence.add(aluno);
         }
+        return aluno;
     }
 
     public Aluno get(Long id) {
