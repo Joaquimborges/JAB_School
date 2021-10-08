@@ -1,7 +1,6 @@
 package com.escola;
 
 import com.escola.entity.Aluno;
-import com.escola.persistence.AlunoPersistence;
 import com.escola.service.AlunoService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -21,13 +20,5 @@ public class AlunoTest {
 
     @Test
     public void cadastrar() {
-        AlunoPersistence mock = Mockito.mock(AlunoPersistence.class);
-        Mockito.when(mock.add(Mockito.any(Aluno.class))).thenReturn(aluno1);
-        Mockito.when(mock.getAll()).thenReturn(alunos);
-
-        AlunoService alunoService = new AlunoService(mock);
-        List<Aluno> alunosCadastrados = List.of(alunoService.salvar(aluno1));
-
-        assertTrue(alunosCadastrados.contains(aluno1));
     }
 }
